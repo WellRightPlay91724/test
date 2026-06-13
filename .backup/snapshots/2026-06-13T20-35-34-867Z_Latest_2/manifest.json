@@ -1,0 +1,16 @@
+{
+  "created": "2026-06-13T20:35:34.930Z",
+  "totalFiles": 1,
+  "totalSize": 8590,
+  "files": [
+    {
+      "path": "index.html",
+      "size": 8590,
+      "lastWrite": "2026-06-13T20:35:00.160Z",
+      "hash": "d3b8aed940dae7f90f31e43f48d5ff4260e83ab996159ca98759cc5854cabf98",
+      "type": "text",
+      "extension": ".html",
+      "isReadOnly": true
+    }
+  ]
+}
