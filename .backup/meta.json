@@ -1,5 +1,22 @@
 {
-  "backups": [],
+  "backups": [
+    {
+      "id": 1781390871036,
+      "name": "Latest",
+      "date": "2026-06-13T22:47:51.036Z",
+      "files": 1,
+      "size": 13992,
+      "sizeFormatted": "13.7 KB",
+      "snapshotDir": "snapshots\\2026-06-13T22-47-51-036Z_Latest",
+      "compressed": false,
+      "verified": true,
+      "verifiedOk": 1,
+      "verifiedFail": 0,
+      "typeStats": {
+        "text": 1
+      }
+    }
+  ],
   "created": 1781387796235,
-  "updated": 1781387796236
+  "updated": 1781390871217
 }
