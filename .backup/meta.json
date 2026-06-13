@@ -1,38 +1,5 @@
 {
-  "backups": [
-    {
-      "id": 1781382467460,
-      "name": "Latest",
-      "date": "2026-06-13T20:27:47.460Z",
-      "files": 1,
-      "size": 1078,
-      "sizeFormatted": "1.1 KB",
-      "snapshotDir": "snapshots\\2026-06-13T20-27-47-460Z_Latest",
-      "compressed": false,
-      "verified": true,
-      "verifiedOk": 1,
-      "verifiedFail": 0,
-      "typeStats": {
-        "text": 1
-      }
-    },
-    {
-      "id": 1781382934867,
-      "name": "Latest 2",
-      "date": "2026-06-13T20:35:34.867Z",
-      "files": 1,
-      "size": 8590,
-      "sizeFormatted": "8.4 KB",
-      "snapshotDir": "snapshots\\2026-06-13T20-35-34-867Z_Latest_2",
-      "compressed": false,
-      "verified": true,
-      "verifiedOk": 1,
-      "verifiedFail": 0,
-      "typeStats": {
-        "text": 1
-      }
-    }
-  ],
-  "created": 1781375483708,
-  "updated": 1781382934933
+  "backups": [],
+  "created": 1781387796235,
+  "updated": 1781387796236
 }
