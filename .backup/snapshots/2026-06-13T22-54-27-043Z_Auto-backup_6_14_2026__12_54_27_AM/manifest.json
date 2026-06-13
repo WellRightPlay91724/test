@@ -1,0 +1,25 @@
+{
+  "created": "2026-06-13T22:54:27.265Z",
+  "totalFiles": 2,
+  "totalSize": 14190,
+  "files": [
+    {
+      "path": ".hintrc",
+      "size": 198,
+      "lastWrite": "2026-06-13T22:53:43.479Z",
+      "hash": "2e2cb13d04685efbec24d700be0720b690ecbc332bc3675d9edc0585cb6e08c0",
+      "type": "binary",
+      "extension": "",
+      "isReadOnly": true
+    },
+    {
+      "path": "index.html",
+      "size": 13992,
+      "lastWrite": "2026-06-13T22:54:27.016Z",
+      "hash": "0a1df53998c82577d6621721a4c1178c029ebcf7443ab0ca3ed76b78bcbabe5c",
+      "type": "text",
+      "extension": ".html",
+      "isReadOnly": true
+    }
+  ]
+}
