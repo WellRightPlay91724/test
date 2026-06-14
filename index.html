@@ -46,22 +46,51 @@ canvas { display: block; image-rendering: pixelated; cursor: pointer; }
   color: rgba(255,255,255,0.25); font-size: clamp(0.7rem,1.5vw,0.9rem);
   z-index: 5; display: none; font-family: monospace;
 }
-#gameOverScreen {
-  display: none; flex-direction: column; align-items: center;
-  background: rgba(0,0,0,0.75); padding: 30px 50px;
-  border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);
+#sheetBackdrop {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5); z-index: 15; display: none;
+  pointer-events: auto;
 }
-#gameOverScreen h2 { color: #ff6b6b; font-size: 2rem; margin-bottom: 0.5rem; }
-#gameOverScreen p { color: rgba(255,255,255,0.6); font-size: 1rem; margin-bottom: 0.3rem; }
-#gameOverScreen .final-score { color: #f7d44a; font-size: 2.5rem; font-weight: 900; margin: 0.5rem 0; }
-#gameOverScreen .best-score { color: rgba(255,255,255,0.3); font-size: 0.85rem; margin-bottom: 1.5rem; }
-#restartBtn {
-  background: #f7d44a; color: #1a1a2e; border: none; padding: 12px 40px;
-  font-size: 1.1rem; font-family: monospace; font-weight: bold;
-  cursor: pointer; pointer-events: auto; border-radius: 8px;
-  transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.1em;
+#gameOverSheet {
+  position: fixed; bottom: 0; left: 0; width: 100%; max-height: 80vh;
+  z-index: 20; background: #1c1c2e; border-radius: 24px 24px 0 0;
+  transform: translateY(100%); transition: transform 0.45s cubic-bezier(0.32, 0.72, 0, 1);
+  pointer-events: auto; display: flex; flex-direction: column;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 -10px 60px rgba(0,0,0,0.6);
 }
-#restartBtn:hover { transform: scale(1.1); background: #ffe066; }
+#gameOverSheet.show { transform: translateY(0); }
+#sheetHandle {
+  width: 40px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.15);
+  margin: 12px auto 8px; flex-shrink: 0;
+}
+#sheetContent {
+  padding: 8px 28px 32px; overflow-y: auto; flex: 1;
+  display: flex; flex-direction: column; align-items: center;
+}
+#sheetScore { color: #f7d44a; font-size: 3.2rem; font-weight: 900; margin: 4px 0 2px; letter-spacing: -0.03em; font-family: monospace; }
+#sheetScoreLabel { color: rgba(255,255,255,0.2); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; }
+#sheetBest {
+  color: rgba(255,255,255,0.25); font-size: 0.85rem; margin-bottom: 24px;
+  border-top: 1px solid rgba(255,255,255,0.06); padding-top: 14px; width: 100%; text-align: center;
+}
+#reviveBtn {
+  background: linear-gradient(135deg,#6a5acd,#8b7add); color: #fff; border: none;
+  padding: 14px 36px; font-size: 1rem; font-family: monospace; font-weight: bold;
+  cursor: pointer; pointer-events: auto; border-radius: 14px;
+  transition: all 0.2s; width: 100%; max-width: 280px; margin-bottom: 10px;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+#reviveBtn:not(.disabled):hover { transform: scale(1.05); filter: brightness(1.15); }
+#reviveBtn.disabled { opacity: 0.3; cursor: not-allowed; filter: grayscale(0.8); }
+#reviveBtn .cost { color: #f7d44a; font-weight: 900; }
+#restartSheetBtn {
+  background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.08);
+  padding: 12px 36px; font-size: 0.9rem; font-family: monospace; font-weight: bold;
+  cursor: pointer; pointer-events: auto; border-radius: 14px;
+  transition: all 0.2s; width: 100%; max-width: 280px;
+}
+#restartSheetBtn:hover { background: rgba(255,255,255,0.1); color: #fff; }
 </style>
 </head>
 <body>
@@ -73,12 +102,16 @@ canvas { display: block; image-rendering: pixelated; cursor: pointer; }
 </div>
 <div id="scoreDisplay">0</div>
 <div id="highScore">BEST: 0</div>
-<div id="gameOverScreen" style="display:none">
-  <h2>CRASH!</h2>
-  <div class="final-score" id="finalScore">0</div>
-  <p>score</p>
-  <div class="best-score">Best: <span id="bestScore">0</span></div>
-  <button id="restartBtn">Fly Again</button>
+<div id="sheetBackdrop"></div>
+<div id="gameOverSheet">
+  <div id="sheetHandle"></div>
+  <div id="sheetContent">
+    <div id="sheetScore">0</div>
+    <div id="sheetScoreLabel">score</div>
+    <div id="sheetBest">BEST: <span id="sheetBestScore">0</span></div>
+    <button id="reviveBtn"><span>✨ Revive</span> <span class="cost">(5 pts)</span></button>
+    <button id="restartSheetBtn">↻ Restart</button>
+  </div>
 </div>
 
 <script>
@@ -91,10 +124,13 @@ const hint = document.getElementById('hint');
 const overlay = document.getElementById('overlay');
 const scoreDisplay = document.getElementById('scoreDisplay');
 const highScoreEl = document.getElementById('highScore');
-const finalScore = document.getElementById('finalScore');
-const bestScore = document.getElementById('bestScore');
-const gameOverScreen = document.getElementById('gameOverScreen');
-const restartBtn = document.getElementById('restartBtn');
+const sheetBackdrop = document.getElementById('sheetBackdrop');
+const gameOverSheet = document.getElementById('gameOverSheet');
+const sheetScore = document.getElementById('sheetScore');
+const sheetBestScore = document.getElementById('sheetBestScore');
+const sheetBest = document.getElementById('sheetBest');
+const reviveBtn = document.getElementById('reviveBtn');
+const restartSheetBtn = document.getElementById('restartSheetBtn');
 
 let W, H, scale;
 function resize() {
@@ -120,6 +156,7 @@ const BIRD_R = 12;
 let state = 'title';
 let bird, pipes, score, best, groundX, frame, shake, shakeTimer, gameTimer;
 let isNight, cycleTime, enemies, enemyTimer;
+let revivePts, breakingPipe, breakTimer, breakShake;
 
 function init() {
   bird = { x: W * 0.3, y: H * 0.4, vy: 0, r: BIRD_R, rot: 0, wing: 0 };
@@ -134,6 +171,10 @@ function init() {
   isNight = false;
   enemies = [];
   enemyTimer = 0;
+  revivePts = 0;
+  breakingPipe = null;
+  breakTimer = 0;
+  breakShake = 0;
   best = parseInt(localStorage.getItem('fluppyBest') || '0');
   highScoreEl.textContent = 'BEST: ' + best;
 }
@@ -162,8 +203,52 @@ function startGame() {
   overlay.style.display = 'none';
   scoreDisplay.style.display = 'block';
   highScoreEl.style.display = 'block';
-  gameOverScreen.style.display = 'none';
+  sheetBackdrop.style.display = 'none';
+  gameOverSheet.classList.remove('show');
   addPipe();
+}
+
+function showSheet() {
+  sheetScore.textContent = score;
+  sheetBestScore.textContent = best;
+  sheetBest.style.display = 'block';
+  sheetBackdrop.style.display = 'block';
+  const cost = 5;
+  if (revivePts >= cost) {
+    reviveBtn.classList.remove('disabled');
+    reviveBtn.innerHTML = '<span>✨ Revive</span> <span class="cost">(' + cost + ' pts)</span>';
+  } else {
+    reviveBtn.classList.add('disabled');
+    reviveBtn.innerHTML = '<span>✨ Revive</span> <span class="cost">(' + cost + ' pts)</span>';
+  }
+  requestAnimationFrame(() => { gameOverSheet.classList.add('show'); });
+}
+
+function doRevive() {
+  const cost = 5;
+  if (revivePts < cost) return;
+  revivePts -= cost;
+  sheetBackdrop.style.display = 'none';
+  gameOverSheet.classList.remove('show');
+
+  bird.x = W * 0.3;
+  bird.y = H * 0.4;
+  bird.vy = 0;
+  bird.rot = 0;
+
+  let nearest = null, nd = Infinity;
+  for (const p of pipes) {
+    const d = Math.abs(p.x + PIPE_W / 2 - bird.x);
+    if (d < nd) { nd = d; nearest = p; }
+  }
+  if (nearest) {
+    breakingPipe = nearest;
+    breakTimer = 0.8;
+    breakShake = 8;
+    nearest.breaking = true;
+  }
+  state = 'reviving';
+  playTone(440, 0.15, 0.06);
 }
 
 function gameOver() {
@@ -175,15 +260,7 @@ function gameOver() {
     best = score;
     localStorage.setItem('fluppyBest', best.toString());
   }
-  setTimeout(() => {
-    finalScore.textContent = score;
-    bestScore.textContent = best;
-    gameOverScreen.style.display = 'flex';
-    overlay.style.display = 'flex';
-    title.style.display = 'none';
-    sub.style.display = 'none';
-    hint.style.display = 'none';
-  }, 600);
+  setTimeout(showSheet, 500);
 }
 
 function update() {
@@ -193,6 +270,25 @@ function update() {
   } else {
     shake = 0;
   }
+
+  if (state === 'reviving') {
+    if (breakShake > 0) {
+      breakShake *= 0.92;
+      if (breakShake < 0.1) breakShake = 0;
+    }
+    breakTimer -= 1/60;
+    shake = breakShake;
+    if (breakTimer <= 0 && breakingPipe) {
+      const idx = pipes.indexOf(breakingPipe);
+      if (idx !== -1) pipes.splice(idx, 1);
+      breakingPipe = null;
+      shake = 0;
+      state = 'playing';
+      playFlap();
+    }
+    return;
+  }
+
   if (state !== 'playing') return;
   frame++;
   gameTimer++;
@@ -223,6 +319,7 @@ function update() {
     if (!p.scored && p.x + PIPE_W < bird.x) {
       p.scored = true;
       score++;
+      revivePts++;
       scoreDisplay.textContent = score;
       playScore();
     }
@@ -307,6 +404,26 @@ function draw() {
 
   for (const p of pipes) {
     const x = p.x, topH = p.gapY, bottomY = p.gapY + PIPE_GAP;
+    if (p.breaking) {
+      const offset = (1 - breakTimer / 0.8) * 30;
+      ctx.shadowColor = '#ffaa44'; ctx.shadowBlur = 20;
+      for (let frag = 0; frag < 6; frag++) {
+        const fx = x + frag * 7 + Math.sin(breakTimer * 20 + frag) * offset * 0.5;
+        const fw = 5 + Math.random() * 3;
+        const fh = (topH / 6) + Math.random() * 8;
+        ctx.fillStyle = frag % 2 === 0 ? '#6aaf4a' : '#5a8f3c';
+        ctx.fillRect(fx, frag * (topH / 6) + Math.sin(breakTimer * 15 + frag) * 4, fw, fh);
+      }
+      for (let frag = 0; frag < 6; frag++) {
+        const fx = x + frag * 7 + Math.cos(breakTimer * 18 + frag) * offset * 0.5;
+        const fw = 5 + Math.random() * 3;
+        const fh = ((H - GROUND_H - bottomY) / 6) + Math.random() * 8;
+        ctx.fillStyle = frag % 2 === 0 ? '#6aaf4a' : '#5a8f3c';
+        ctx.fillRect(fx, bottomY + frag * ((H - GROUND_H - bottomY) / 6) + Math.cos(breakTimer * 12 + frag) * 4, fw, fh);
+      }
+      ctx.shadowBlur = 0;
+      continue;
+    }
     ctx.shadowColor = '#ffaa44'; ctx.shadowBlur = isNight ? 20 : 0;
     ctx.fillStyle = '#6aaf4a'; ctx.fillRect(x, 0, PIPE_W, topH);
     ctx.fillRect(x, bottomY, PIPE_W, H - GROUND_H - bottomY);
@@ -443,7 +560,11 @@ canvas.addEventListener('touchstart', (e) => { e.preventDefault(); audioCtx.resu
 document.addEventListener('keydown', (e) => {
   if (e.key === ' ' || e.key === 'Space') { e.preventDefault(); audioCtx.resume(); flap(); }
 });
-restartBtn.addEventListener('click', () => { audioCtx.resume(); startGame(); });
+reviveBtn.addEventListener('click', () => { audioCtx.resume(); doRevive(); });
+restartSheetBtn.addEventListener('click', () => { audioCtx.resume(); startGame(); });
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'r' || e.key === 'R') { audioCtx.resume(); if (state === 'dead' || state === 'reviving') doRevive(); }
+});
 
 init();
 loop();
