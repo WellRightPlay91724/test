@@ -16,8 +16,25 @@
         "binary": 1,
         "text": 1
       }
+    },
+    {
+      "id": 1781471178357,
+      "name": "Latest (1)",
+      "date": "2026-06-14T21:06:18.357Z",
+      "files": 2,
+      "size": 18502,
+      "sizeFormatted": "18.1 KB",
+      "snapshotDir": "snapshots\\2026-06-14T21-06-18-357Z_Latest__1_",
+      "compressed": false,
+      "verified": true,
+      "verifiedOk": 2,
+      "verifiedFail": 0,
+      "typeStats": {
+        "binary": 1,
+        "text": 1
+      }
     }
   ],
   "created": 1781452063209,
-  "updated": 1781452119587
+  "updated": 1781471178470
 }
