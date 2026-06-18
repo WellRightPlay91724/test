@@ -67,9 +67,26 @@
         "binary": 1,
         "text": 2
       }
+    },
+    {
+      "id": 1781800850109,
+      "name": "Latest (3)",
+      "date": "0001-01-03T01:29:40.0850109",
+      "files": 4,
+      "size": 38491,
+      "sizeFormatted": "37,6 KB",
+      "snapshotDir": "snapshots\\2026-06-18_18-40-50_Latest__3_",
+      "compressed": false,
+      "verified": false,
+      "verifiedOk": 4,
+      "verifiedFail": 0,
+      "typeStats": {
+        "text": 3,
+        "binary": 1
+      }
     }
   ],
   "created": 1781452063209,
-  "updated": 1781791960323,
-  "_lastAutoBackup": 1781791187220
+  "updated": 1781800850484,
+  "_lastAutoBackup": 1781796551576
 }

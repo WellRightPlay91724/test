@@ -1,0 +1,43 @@
+{
+  "created": "2026-06-18T18:40:50.3093649+02:00",
+  "totalFiles": 4,
+  "totalSize": 38491.0,
+  "files": [
+    {
+      "path": ".hintrc",
+      "size": 198,
+      "lastWrite": "2026-06-14T00:53:43.4788069+02:00",
+      "hash": "2E2CB13D04685EFBEC24D700BE0720B690ECBC332BC3675D9EDC0585CB6E08C0",
+      "type": "binary",
+      "extension": ".hintrc",
+      "isReadOnly": false
+    },
+    {
+      "path": "index.html",
+      "size": 18304,
+      "lastWrite": "2026-06-14T22:52:29.4823760+02:00",
+      "hash": "D7A44ABB1EC14D7DD0B265DC3A7D581F9E15C70FBEDC919A061C28D5F282C17D",
+      "type": "text",
+      "extension": ".html",
+      "isReadOnly": false
+    },
+    {
+      "path": "index1.html",
+      "size": 8863,
+      "lastWrite": "2026-06-18T17:58:07.8450654+02:00",
+      "hash": "A50412B4D56EB95DAFE3D2464681C28B69D9D4746273CD71AD0DEA6E48F29760",
+      "type": "text",
+      "extension": ".html",
+      "isReadOnly": false
+    },
+    {
+      "path": "index2.html",
+      "size": 11126,
+      "lastWrite": "2026-06-18T18:38:37.0746458+02:00",
+      "hash": "1EDDAF9FD48ECAEB83F77B5AF50E4374187C662BDF72FC2F48B19A664FB991F1",
+      "type": "text",
+      "extension": ".html",
+      "isReadOnly": false
+    }
+  ]
+}
