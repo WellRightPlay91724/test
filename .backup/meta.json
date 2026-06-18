@@ -1,47 +1,13 @@
 {
   "backups": [
     {
-      "id": 1781452119430,
+      "id": 1781802388866,
       "name": "Latest",
-      "date": "2026-06-14T15:48:39.43Z",
-      "files": 2,
-      "size": 18790,
-      "sizeFormatted": "18.3 KB",
-      "snapshotDir": "snapshots\\2026-06-14T15-48-39-430Z_Latest",
-      "compressed": false,
-      "verified": true,
-      "verifiedOk": 2,
-      "verifiedFail": 0,
-      "typeStats": {
-        "binary": 1,
-        "text": 1
-      }
-    },
-    {
-      "id": 1781471178357,
-      "name": "Latest (1)",
-      "date": "2026-06-14T21:06:18.357Z",
-      "files": 2,
-      "size": 18502,
-      "sizeFormatted": "18.1 KB",
-      "snapshotDir": "snapshots\\2026-06-14T21-06-18-357Z_Latest__1_",
-      "compressed": false,
-      "verified": true,
-      "verifiedOk": 2,
-      "verifiedFail": 0,
-      "typeStats": {
-        "binary": 1,
-        "text": 1
-      }
-    },
-    {
-      "id": 1781791187225,
-      "name": "Auto-backup 6/18/2026, 3:59:47 PM",
-      "date": "2026-06-18T13:59:47.225Z",
+      "date": "2026-06-18T17:06:28.866Z",
       "files": 3,
-      "size": 25309,
-      "sizeFormatted": "24.7 KB",
-      "snapshotDir": "snapshots\\2026-06-18T13-59-47-225Z_Auto-backup_6_18_2026__3_59_47_PM",
+      "size": 27365,
+      "sizeFormatted": "26.7 KB",
+      "snapshotDir": "snapshots\\2026-06-18T17-06-28-866Z_Latest",
       "compressed": false,
       "verified": true,
       "verifiedOk": 3,
@@ -49,44 +15,9 @@
       "typeStats": {
         "binary": 1,
         "text": 2
-      }
-    },
-    {
-      "id": 1781791959849,
-      "name": "Latest (2)",
-      "date": "0001-01-03T01:29:39.1959849",
-      "files": 3,
-      "size": 25743,
-      "sizeFormatted": "25,1 KB",
-      "snapshotDir": "snapshots\\2026-06-18_16-12-39_Latest__2_",
-      "compressed": false,
-      "verified": true,
-      "verifiedOk": 3,
-      "verifiedFail": 0,
-      "typeStats": {
-        "binary": 1,
-        "text": 2
-      }
-    },
-    {
-      "id": 1781800850109,
-      "name": "Latest (3)",
-      "date": "0001-01-03T01:29:40.0850109",
-      "files": 4,
-      "size": 38491,
-      "sizeFormatted": "37,6 KB",
-      "snapshotDir": "snapshots\\2026-06-18_18-40-50_Latest__3_",
-      "compressed": false,
-      "verified": false,
-      "verifiedOk": 4,
-      "verifiedFail": 0,
-      "typeStats": {
-        "text": 3,
-        "binary": 1
       }
     }
   ],
-  "created": 1781452063209,
-  "updated": 1781800850484,
-  "_lastAutoBackup": 1781796551576
+  "created": 1781802376095,
+  "updated": 1781802396491
 }
