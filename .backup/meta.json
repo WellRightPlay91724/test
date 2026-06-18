@@ -3,7 +3,7 @@
     {
       "id": 1781452119430,
       "name": "Latest",
-      "date": "2026-06-14T15:48:39.430Z",
+      "date": "2026-06-14T15:48:39.43Z",
       "files": 2,
       "size": 18790,
       "sizeFormatted": "18.3 KB",
@@ -50,9 +50,26 @@
         "binary": 1,
         "text": 2
       }
+    },
+    {
+      "id": 1781791959849,
+      "name": "Latest (2)",
+      "date": "0001-01-03T01:29:39.1959849",
+      "files": 3,
+      "size": 25743,
+      "sizeFormatted": "25,1 KB",
+      "snapshotDir": "snapshots\\2026-06-18_16-12-39_Latest__2_",
+      "compressed": false,
+      "verified": true,
+      "verifiedOk": 3,
+      "verifiedFail": 0,
+      "typeStats": {
+        "binary": 1,
+        "text": 2
+      }
     }
   ],
   "created": 1781452063209,
-  "updated": 1781791187440,
+  "updated": 1781791960323,
   "_lastAutoBackup": 1781791187220
 }
