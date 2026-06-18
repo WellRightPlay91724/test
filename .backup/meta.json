@@ -33,8 +33,26 @@
         "binary": 1,
         "text": 1
       }
+    },
+    {
+      "id": 1781791187225,
+      "name": "Auto-backup 6/18/2026, 3:59:47 PM",
+      "date": "2026-06-18T13:59:47.225Z",
+      "files": 3,
+      "size": 25309,
+      "sizeFormatted": "24.7 KB",
+      "snapshotDir": "snapshots\\2026-06-18T13-59-47-225Z_Auto-backup_6_18_2026__3_59_47_PM",
+      "compressed": false,
+      "verified": true,
+      "verifiedOk": 3,
+      "verifiedFail": 0,
+      "typeStats": {
+        "binary": 1,
+        "text": 2
+      }
     }
   ],
   "created": 1781452063209,
-  "updated": 1781471178470
+  "updated": 1781791187440,
+  "_lastAutoBackup": 1781791187220
 }
