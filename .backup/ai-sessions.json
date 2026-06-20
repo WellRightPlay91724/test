@@ -1,0 +1,31 @@
+{
+  "sessions": [
+    {
+      "id": "mqmk6n7cfzw5jexgs",
+      "startedAt": "2026-06-20T16:15:09.048Z",
+      "name": "How to create backup",
+      "messages": [
+        {
+          "text": "How to create backup",
+          "role": "user",
+          "timestamp": "2026-06-20T16:15:18.319Z"
+        },
+        {
+          "text": "To create a backup, pick 'Create Project Backup'. It snapshots your project (excluding patterns from Settings).\nEach backup gets a name and description. Add more files later with 'Add Files to Backup'.\nBackups live in .backup\\snapshots\\ as full copies or compressed ZIPs.",
+          "role": "bot",
+          "timestamp": "2026-06-20T16:15:18.319Z"
+        },
+        {
+          "text": "How to delete backup",
+          "role": "user",
+          "timestamp": "2026-06-20T16:16:01.097Z"
+        },
+        {
+          "text": "To create a backup, pick 'Create Project Backup'. It snapshots your project (excluding patterns from Settings).\nEach backup gets a name and description. Add more files later with 'Add Files to Backup'.\nBackups live in .backup\\snapshots\\ as full copies or compressed ZIPs.\nTo delete a backup, pick 'Delete Backup'. This removes the snapshot from disk permanently.",
+          "role": "bot",
+          "timestamp": "2026-06-20T16:16:01.097Z"
+        }
+      ]
+    }
+  ]
+}
